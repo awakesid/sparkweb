@@ -20,11 +20,19 @@ for(const star of document.getElementsByClassName("magic-star")) {
     setInterval(() => animate(star), 1000);
   }, index++ * (interval / 3))
 }
+for(const star of document.getElementsByClassName("magic-stare")) {
+  setTimeout(() => {
+    animate(star);
+    
+    setInterval(() => animate(star), 1000);
+  }, index++ * (interval / 3))
+}
 
 
 const nav=document.querySelector(".navbar");
 const text=document.querySelector(".text");
 const tee=document.querySelector(".tee");
+
 
 const t1=new TimelineMax();
 t1.fromTo(nav,
@@ -47,7 +55,130 @@ t1.fromTo(nav,
       "-=1"
 
     )
+
+   
+    gsap.registerPlugin(ScrollTrigger);
+
+    ScrollTrigger.defaults({
+        toggleActions: "restart pause resume pause",
+        scroller: ".container"
+    });
+
+    gsap.from(".design h2", {
+      scrollTrigger: ".design",
+      y:"30%",
+      opacity:0
+  });
+
+    gsap.to(".design h2", {
+      scrollTrigger: ".design",
+      duration: 1,
+      y:"0%",
+      ease: Power2.easeInOut, 
+      opacity:1
+  });
+
+  gsap.to(".design .cards .card1", {
+    scrollTrigger: ".design",
+    duration: 1.5,
+    y:"0px",
+    x:"120px",
+    rotate:20,
+    ease: Power2.easeInOut,
+    opacity:1
+});
+
+ 
+
+gsap.to(".design .cards .card2", {
+  scrollTrigger: ".design",
+  duration: 1.5,
+  x:"-120px",
+  rotate:-20,
+  ease: Power2.easeInOut,
   
+  opacity:1
+});
+
+
+
+
+    gsap.from(".wear .lastupper .backall", {
+      scrollTrigger: ".wear",
+      opacity:0
+    });
+
+    gsap.to(".wear .lastupper .backall", {
+      scrollTrigger: ".wear",
+      duration: 2,
+      ease: Power2.easeInOut,
+      opacity:1
+    });
+
+
+    gsap.from(".wear .lastupper h3", {
+      scrollTrigger: ".wear",
+      height:"0%",
+      opacity:0
+    });
+
+    gsap.to(".wear .lastupper h3", {
+      scrollTrigger: ".wear",
+      duration: 2,
+      height:"25%",
+      ease: Power2.easeInOut,
+      opacity:1
+    });
+
+
+
+    gsap.from(".wear .lastdown", {
+      scrollTrigger: ".wear",
+      height:"0%"
+    });
+
+    gsap.to(".wear .lastdown", {
+      scrollTrigger: ".wear",
+
+      duration: 1.4,
+      ease: Power2.easeInOut,
+      height:"20%",
+      
+    });
+
+
+
+
+
+const teepic=document.querySelectorAll(".shirt");
+var counter=0;
+
+teepic.forEach((shirt,index) => {
+  shirt.style.left=`${ index *100 }%`;
+})
+
+const goNext=()=>{
+  counter++;
+  if(counter>=4){
+    counter=0;
+  }
+  slidetee();
+}
+const goPrev=()=>{
+  counter--;
+  if(counter<0){
+    counter=3;
+  }
+
+  slidetee();
+}
+const slidetee=()=>{
+  teepic.forEach((shirt)=>
+  {
+    shirt.style.transform = `translateX(-${counter * 100}%)`
+  })
+
+}
 
 
 
